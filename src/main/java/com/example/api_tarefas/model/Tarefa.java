@@ -23,7 +23,6 @@ public class Tarefa {
 
     private String responsavel;
 
-    // Getters e setters (ou use Lombok @Data)
     public Long getId() {
         return id;
     }

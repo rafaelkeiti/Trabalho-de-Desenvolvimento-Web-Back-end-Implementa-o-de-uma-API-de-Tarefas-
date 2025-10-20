@@ -16,19 +16,16 @@ public class TarefaController {
     @Autowired
     private TarefaRepository tarefaRepository;
 
-    // Criar tarefa
     @PostMapping
     public Tarefa criarTarefa(@RequestBody Tarefa tarefa) {
         return tarefaRepository.save(tarefa);
     }
 
-    // Listar todas as tarefas
     @GetMapping
     public List<Tarefa> listarTarefas() {
         return tarefaRepository.findAll();
     }
 
-    // Consultar tarefa por ID
     @GetMapping("/{id}")
     public ResponseEntity<Tarefa> buscarTarefaPorId(@PathVariable Long id) {
         Optional<Tarefa> tarefa = tarefaRepository.findById(id);
@@ -36,7 +33,6 @@ public class TarefaController {
                      .orElse(ResponseEntity.notFound().build());
     }
 
-    // Atualizar tarefa
     @PutMapping("/{id}")
     public ResponseEntity<Tarefa> atualizarTarefa(@PathVariable Long id, @RequestBody Tarefa tarefaDetalhes) {
         Optional<Tarefa> optionalTarefa = tarefaRepository.findById(id);
@@ -52,7 +48,6 @@ public class TarefaController {
         return ResponseEntity.ok(tarefaAtualizada);
     }
 
-    // Remover tarefa
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarTarefa(@PathVariable Long id) {
         if (!tarefaRepository.existsById(id)) {
